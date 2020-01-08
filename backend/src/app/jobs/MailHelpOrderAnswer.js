@@ -5,9 +5,9 @@ class MailHelpOrderAnswer {
     return 'MailHelpOrderAnswer';
   }
 
-  async handle({ data }) {
+  async handle({data}) {
     const { helpOrder } = data;
-
+    
     await Mail.sendMail({
       to: `${helpOrder.student.name} <${helpOrder.student.email}>`,
       subject: 'Sua dúvida com a Gympoint',

@@ -10,6 +10,7 @@ import CheckinController from './app/controller/CheckinController';
 import HelpOrderController from './app/controller/HelpOrderController';
 import HelpAnswerController from './app/controller/HelpAnswerController';
 import StudentSessionController from './app/controller/StudentSessionController';
+import TrainingController from './app/controller/TrainingController'
 
 import AuthMiddleware from './app/middlewares/auth';
 
@@ -32,6 +33,12 @@ routes.post('/students/:id/help-orders', HelpOrderController.store);
 
 // AUTH middleware
 routes.use(AuthMiddleware);
+
+// TRAINING
+routes.get('/training', TrainingController.show)
+routes.post('/training-register', TrainingController.store)
+routes.put('/training-update', TrainingController.update)
+routes.delete('/training-delete', TrainingController.delete)
 
 // USERS
 routes.get('/users', UserController.index);

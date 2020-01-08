@@ -16,6 +16,16 @@ export const Header = styled.header`
     justify-content: space-between;
     align-items: center;
   }
+  @media(max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    aside {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 `;
 
 export const SearchForm = styled.div`

@@ -16,28 +16,33 @@ export const Container = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-
+    
     img {
       padding: 0 30px;
       margin-right: 30px;
       border-right: 1px solid ${colors.grayLight};
     }
-
+    
     ul li {
       position: relative;
       display: inline;
-
+      
       a {
         color: ${colors.grayMedium};
         font-weight: bold;
         text-transform: uppercase;
         font-size: 15px;
         margin-right: 10px;
-
+        
         &:hover,
         &.active {
           color: ${colors.blackIsh};
         }
+      }
+    }
+    @media(max-width: 480px) {
+      ul li {
+        display: none;
       }
     }
   }
@@ -53,7 +58,7 @@ export const User = styled.div`
   a {
     font-weight: bold;
     display: block;
-
+    
     &:visited,
     &:active {
       color: ${colors.blackIsh};

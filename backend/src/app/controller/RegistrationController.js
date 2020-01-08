@@ -6,7 +6,7 @@ import Registration from '../models/Registration';
 import Plan from '../models/Plan';
 import Student from '../models/Student';
 
-//import Queue from '../../lib/Queue';
+import Queue from '../../lib/Queue';
 import Notification from '../schemas/Notification';
 import MailRegistrationStore from '../jobs/MailRegistrationStore';
 import MailRegistrationUpdate from '../jobs/MailRegistrationUpdate';
@@ -86,14 +86,14 @@ class RegistrationController {
       student: registration.student_id,
     });
 
-    /*await Queue.add(MailRegistrationStore.key, {
+    await Queue.add(MailRegistrationStore.key, {
       studentName: studentExists.name,
       studentEmail: studentExists.email,
       planTitle: title,
       planDuration: duration,
       formattedDateStart,
       formattedDateEnd,
-    });*/
+    });
 
     return res.json(registration);
   }
@@ -151,14 +151,14 @@ class RegistrationController {
       student: register.student_id,
     });
 
-    /*await Queue.add(MailRegistrationUpdate.key, {
+    await Queue.add(MailRegistrationUpdate.key, {
       studentName: student.name,
       studentEmail: student.email,
       planTitle: title,
       planDuration: duration,
       formattedDateStart,
       formattedDateEnd,
-    });*/
+    });
 
     return res.json(newRegister);
   }

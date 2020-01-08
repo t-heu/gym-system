@@ -5,15 +5,14 @@ import MailHelpOrderAnswer from '../app/jobs/MailHelpOrderAnswer';
 import redisConfig from '../config/redis';
 
 const jobs = [
+  MailHelpOrderAnswer,
   MailRegistrationStore,
   MailRegistrationUpdate,
-  MailHelpOrderAnswer,
 ];
 
 class Queue {
   constructor() {
     this.queues = {};
-
     this.init();
   }
 
@@ -29,14 +28,13 @@ class Queue {
   }
 
   add(queue, job) {
-    return this.queues[queue].bee.createJob(job).save();
+    return this.queues[queue].bee.createJob(job).save()
   }
 
   processQueue() {
     jobs.forEach(job => {
       const { bee, handle } = this.queues[job.key];
-
-      bee.on('failed', this.handleFailure).process(handle);
+      bee.on('failed', this.handleFailure).process(handle)
     });
   }
 

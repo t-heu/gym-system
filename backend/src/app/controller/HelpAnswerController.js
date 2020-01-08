@@ -3,7 +3,7 @@ import HelpOrder from '../models/HelpOrder';
 import Student from '../models/Student';
 import HelpOrderNotifications from '../schemas/HelpOrderNotifications';
 
-//import Queue from '../../lib/Queue';
+import Queue from '../../lib/Queue';
 import MailHelpOrderAnswer from '../jobs/MailHelpOrderAnswer';
 
 class HelpAnswerController {
@@ -96,7 +96,7 @@ class HelpAnswerController {
       student_id: helpOrder.student_id,
     });
 
-    //await Queue.add(MailHelpOrderAnswer.key, { helpOrder });
+    await Queue.add(MailHelpOrderAnswer.key, {helpOrder})
 
     return res.json(helpOrder);
   }

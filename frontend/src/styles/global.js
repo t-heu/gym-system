@@ -25,6 +25,7 @@ export default createGlobalStyle`
 
   body {
     -webkit-font-smoothing: antialiased;
+    background: #f5f5f5;
   }
 
   body, input, button, select, textarea {
@@ -125,13 +126,11 @@ export default createGlobalStyle`
       border: 1px solid ${colors.grayLight};
       border-radius: 4px;
       padding: 0 14px;
-
       appearance: none;
 
       &:before {
         content: 'teste';
         position: absolute;
-
         top: 0;
         left: 0;
         width: 10px;
@@ -173,10 +172,16 @@ export default createGlobalStyle`
     }
 
     tbody {
-
       tr {
         &:last-child td {
           padding-bottom: 0 !important;
+        }
+      }
+      @media(max-width: 480px) {
+        tr {
+          &:last-child td {
+            padding-bottom: 20px !important;
+          }
         }
       }
 
@@ -193,12 +198,10 @@ export default createGlobalStyle`
 
         .inline__edit { color: ${colors.warnDefault}; }
         .inline__delete { color: ${colors.warnDanger}; }
-
       }
     }
 
     /* utils */
-
     .tdCenter {
       text-align: center;
       padding-left: 10px;
@@ -209,4 +212,19 @@ export default createGlobalStyle`
       white-space: pre-wrap;
     }
   }
+  
+ /* Table Base Responsive */
+ @media(max-width: 480px) {
+   table thead {
+     display: none;
+   }
+   table td {
+     text-align: center;
+     border: solid 1px #eee;
+     border-bottom: none;
+   }
+   table td:not(:first-child) {
+     display: block;
+   }
+ }
 `;
