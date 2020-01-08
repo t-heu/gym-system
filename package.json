@@ -1,0 +1,16 @@
+{
+  "name": "gympoint",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "",
+  "author": "Matheus Gomes <m@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start-back": "cd backend && yarn dev",
+    "start-front": "cd frontend && yarn start",
+    "start-mobile": "cd mobile && npm start",
+    "install-backend": "cd backend && yarn install",
+    "compose": "docker-compose up --force-recreate",
+    "populate": "cd backend && yarn sequelize db:migrate && yarn sequelize db:seed:all"
+  }
+}
