@@ -1,7 +1,6 @@
 import * as Yup from 'yup';
 import HelpOrder from '../models/HelpOrder';
 import Student from '../models/Student';
-import HelpOrderNotifications from '../schemas/HelpOrderNotifications';
 
 import NotiHelpOrderAnswer from '../jobs/NotiHelpOrderAnswer'
 import Queue from '../../lib/Queue';
@@ -91,11 +90,6 @@ class HelpAnswerController {
     helpOrder.answered_at = new Date();
 
     helpOrder.save();
-
-    await HelpOrderNotifications.create({
-      helporder_id: id,
-      student_id: helpOrder.student_id,
-    });
 
     await Queue.add(MailHelpOrderAnswer.key, {helpOrder})
     await NotiHelpOrderAnswer.noti(answer)

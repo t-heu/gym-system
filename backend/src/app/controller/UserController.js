@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import User from '../models/User';
+import User from '../schemas/User';
 
 class UserController {
   async index(req, res) {
@@ -30,11 +30,11 @@ class UserController {
     if (!(await schema.isValid(req.body)))
       return res.status(400).json({ error: 'Validation Fails' });
 
-    const userExists = await User.findOne({ where: { email: req.body.email } });
-
+    const userExists = await User.findOne({ email: req.body.email });
+    
     if (userExists)
       return res.status(400).json({ error: 'User already exixts' });
-
+    
     const { id, name, email } = await User.create(req.body);
 
     return res.json({
@@ -48,25 +48,29 @@ class UserController {
     const schema = Yup.object().shape({
       name: Yup.string(),
       email: Yup.string().email(),
-      oldPassword: Yup.string().min(6),
+      /*oldPassword: Yup.string().min(6),
       password: Yup.string()
         .min(6)
         .when('oldPassword', (oldPassword, field) =>
           oldPassword ? field.required() : field
         ),
-      confirmPassword: Yup.string().when('password', (password, field) =>
-        password ? field.required().oneOf([Yup.ref('password')]) : field
-      ),
+      confirmPassword: Yup.string()
+        .when('password', (password, field) => password ? field.required().oneOf([Yup.ref('password')]) : field
+        )*/
     });
 
     if (!(await schema.isValid(req.body)))
       return res.status(400).json({ error: 'Validation fails' });
 
-    const user = await User.findByPk(req.params.id);
+    //const user = await User.findById(req.params.id);
 
-    if (!user) return res.status(400).json({ error: 'User does not exixts' });
+    //if (!user) return res.status(400).json({ error: 'User does not exixts' })
+    
+    console.log(req.body)
+    const {id, name, email} = await 
+    User.findByIdAndUpdate(req.params.id, req.body, {new: true})
 
-    const { id, name, email } = user.update(req.body);
+    //const { id, name, email } = User.update(req.body);
 
     return res.json({
       id,
@@ -76,13 +80,13 @@ class UserController {
   }
 
   async delete(req, res) {
-    const user = await User.findByPk(req.params.id);
-
-    if (!user) return res.status(404).json({ error: 'User not found' });
-
-    const deleteUser = await User.destroy({ where: { id: req.params.id } });
-
-    return res.json({ message: 'User successfully deleted', deleteUser });
+    try {
+      await User.findByIdAndRemove(req.params.id)
+    
+      return res.json({ message: 'User successfully deleted' });
+    } catch(err) {
+      return res.status(400).send({ error: 'Error deleting project' })
+    }
   }
 }
 

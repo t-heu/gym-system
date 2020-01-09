@@ -5,11 +5,9 @@ import StudentController from './app/controller/StudentController';
 import SessionController from './app/controller/SessionController';
 import PlanController from './app/controller/PlanController';
 import RegistrationController from './app/controller/RegistrationController';
-//import NotificationController from './app/controller/NotificationController';
 import CheckinController from './app/controller/CheckinController';
 import HelpOrderController from './app/controller/HelpOrderController';
 import HelpAnswerController from './app/controller/HelpAnswerController';
-import StudentSessionController from './app/controller/StudentSessionController';
 import TrainingController from './app/controller/TrainingController'
 
 import AuthMiddleware from './app/middlewares/auth';
@@ -18,8 +16,7 @@ const routes = new Router();
 
 // SESSION
 routes.post('/sessions', SessionController.store);
-routes.post('/create', SessionController.create);
-routes.post('/studentsession', StudentSessionController.show);
+routes.post('/studentsession', SessionController.show);
 
 // STUDENT CHECKIN
 routes.get('/students/:id/checkins', CheckinController.index);
@@ -40,11 +37,10 @@ routes.post('/training-register', TrainingController.store)
 routes.put('/training-update', TrainingController.update)
 routes.delete('/training-delete', TrainingController.delete)
 
-// USERS
+// USERS / Admin
+routes.post('/users', UserController.store);
 routes.get('/users', UserController.index);
 routes.get('/users/:id', UserController.show);
-
-routes.post('/users', UserController.store);
 routes.put('/users/', UserController.update);
 routes.delete('/users/:id', UserController.delete);
 
@@ -77,9 +73,5 @@ routes.get('/registration/:id', RegistrationController.index);
 routes.post('/registration', RegistrationController.store);
 routes.put('/registration/:id', RegistrationController.update);
 routes.delete('/registration/:id', RegistrationController.delete);
-
-// NOTIFICATION
-//routes.get('/notification/:studentId', NotificationController.index);
-//routes.put('/notification/:id', NotificationController.update);
 
 export default routes;

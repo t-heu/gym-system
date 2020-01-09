@@ -5,10 +5,11 @@ import { Op } from 'sequelize';
 import Registration from '../models/Registration';
 import Plan from '../models/Plan';
 import Student from '../models/Student';
+import User from '../schemas/User';
 
 import NotiRegistrationUpdate from '../jobs/NotiRegistrationUpdate'
 import Queue from '../../lib/Queue';
-import Notification from '../schemas/Notification';
+
 import MailRegistrationStore from '../jobs/MailRegistrationStore';
 import MailRegistrationUpdate from '../jobs/MailRegistrationUpdate';
 
@@ -63,7 +64,7 @@ class RegistrationController {
     const { duration, price, title } = await Plan.findByPk(plan_id);
     const endDate = addMonths(parseISO(start_date), duration);
     const priceTotal = price * duration;
-
+    
     const registration = await Registration.create({
       created_by_id: createdById,
       student_id,
@@ -79,13 +80,6 @@ class RegistrationController {
 
     const formattedDateStart = format(parseISO(start_date), "dd'/'MM'/'yyyy");
     const formattedDateEnd = format(endDate, "dd'/'MM'/'yyyy");
-
-    await Notification.create({
-      notification_type: 'store',
-      register_start: formattedDateStart,
-      register_end: formattedDateEnd,
-      student: registration.student_id,
-    });
 
     await Queue.add(MailRegistrationStore.key, {
       studentName: studentExists.name,
@@ -144,13 +138,6 @@ class RegistrationController {
 
     const formattedDateStart = format(parseISO(start_date), "dd'/'MM'/'yyyy");
     const formattedDateEnd = format(endDate, "dd'/'MM'/'yyyy");
-
-    await Notification.create({
-      notification_type: 'update',
-      register_start: formattedDateStart,
-      register_end: formattedDateEnd,
-      student: register.student_id,
-    });
 
     await Queue.add(MailRegistrationUpdate.key, {
       studentName: student.name,

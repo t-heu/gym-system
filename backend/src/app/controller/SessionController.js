@@ -1,18 +1,21 @@
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs'
 import authConfig from '../../config/auth';
 
-import User from '../models/User';
+import User from '../schemas/User';
+import Student from '../models/Student';
 
 class SessionController {
   async store(req, res) {
     const { email, password } = req.body;
     
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({ email });
 
     if (!user) return res.status(400).json({ error: 'User not Found' });
 
-    if (!(await user.checkPassword(password)))
-      return res.status(401).json({ error: 'Password does not match' });
+    if (!await bcrypt.compare(password, user.password)) {
+      return res.status(400).json({ error: 'invalid password' })
+    }
 
     const { id, name } = user;
 
@@ -26,18 +29,20 @@ class SessionController {
         expiresIn: authConfig.expiresIn,
       }),
     });
-  },
+  }
   
-  async create(req, res) {
-    const { name, email, password } = req.body;
-    
-    const users = await User.create({
-      name,
-      email,
-      password
-    })
-    
-    res.json(users)
+  async show(req, res) {
+    const { id } = await Student.findOne({
+      where: { code: req.body.code },
+    });
+  
+  
+    if (!id || id == null)
+      return res
+        .status(400)
+        .json({ error: 'Student Not Found or not available' });
+  
+    return res.json({ id });
   }
 }
 

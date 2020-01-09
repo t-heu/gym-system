@@ -8,8 +8,7 @@ module.exports = {
         primaryKey: true,
       },
       created_by_id: {
-        type: Sequelize.INTEGER,
-        references: { model: 'users', key: 'id' },
+        type: Sequelize.STRING,
         allowNull: false,
       },
       student_id: {
