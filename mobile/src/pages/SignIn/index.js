@@ -5,7 +5,7 @@ import { Alert, KeyboardAvoidingView } from 'react-native';
 import logoVertical from '../../assets/logo-vertical.png';
 import { Container, Logo, Input, Button } from './styles';
 
-import { signInRequest } from '../../store/modules/auth/actions';
+import { signInRequest } from '../../store/modules/auth/actions'
 
 export default function SignIn() {
   const dispatch = useDispatch();
