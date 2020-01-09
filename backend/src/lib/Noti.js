@@ -5,7 +5,7 @@ let expo = new Expo();
 let messages = [];
 let somePushTokens = [ 'ExponentPushToken[WBCZmyCo4LDBoCglAyA26m]']
 
-export default function NotiPushSend() {
+export default function NotiPushSend({title, body, data}) {
   for (let pushToken of somePushTokens) {
     if (!Expo.isExpoPushToken(pushToken)) {
       console.error(`Push token ${pushToken} is not a valid Expo push token`);
@@ -15,9 +15,9 @@ export default function NotiPushSend() {
     messages.push({
       to: pushToken,
       sound: 'default',
-      title: 'this',
-      body: 'This is a test notification',
-      data: { evan: 'cool' },
+      title,
+      body,
+      data
     })
   }
   

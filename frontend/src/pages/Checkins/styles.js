@@ -41,7 +41,9 @@ export const SearchForm = styled.div `
 export const Button = styled.button`
   padding: .5em 1em;
   display: flex;
+  margin: auto;
   align-items: center;
+  justify-content: center;
   background: #27ae60;
   border: none;
   color: #fff;

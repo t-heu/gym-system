@@ -5,7 +5,7 @@ import StudentController from './app/controller/StudentController';
 import SessionController from './app/controller/SessionController';
 import PlanController from './app/controller/PlanController';
 import RegistrationController from './app/controller/RegistrationController';
-import NotificationController from './app/controller/NotificationController';
+//import NotificationController from './app/controller/NotificationController';
 import CheckinController from './app/controller/CheckinController';
 import HelpOrderController from './app/controller/HelpOrderController';
 import HelpAnswerController from './app/controller/HelpAnswerController';
@@ -79,7 +79,7 @@ routes.put('/registration/:id', RegistrationController.update);
 routes.delete('/registration/:id', RegistrationController.delete);
 
 // NOTIFICATION
-routes.get('/notification/:studentId', NotificationController.index);
-routes.put('/notification/:id', NotificationController.update);
+//routes.get('/notification/:studentId', NotificationController.index);
+//routes.put('/notification/:id', NotificationController.update);
 
 export default routes;

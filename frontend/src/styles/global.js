@@ -85,11 +85,11 @@ export default createGlobalStyle`
     }
 
     span {
-        display: block;
-        color: ${colors.primary};
-        font-weight: normal;
-        transform: translateY(-16px);
-        text-transform: capitalize;
+      display: block;
+      color: ${colors.primary};
+      font-weight: normal;
+      transform: translateY(-16px);
+      text-transform: capitalize;
     }
 
     input  {
@@ -138,7 +138,6 @@ export default createGlobalStyle`
         display: flex;
         background: red;
       }
-
     }
 
     textarea {
@@ -215,16 +214,16 @@ export default createGlobalStyle`
   
  /* Table Base Responsive */
  @media(max-width: 480px) {
-   table thead {
-     display: none;
-   }
-   table td {
-     text-align: center;
-     border: solid 1px #eee;
-     border-bottom: none;
-   }
-   table td:not(:first-child) {
-     display: block;
-   }
+    table thead {
+      display: none;
+    }
+    table td {
+      text-align: center;
+      border: solid 1px #eee;
+      border-bottom: none;
+    }
+    table td:not(:first-child) {
+      display: block;
+    }
  }
 `;

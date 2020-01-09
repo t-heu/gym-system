@@ -6,6 +6,7 @@ import Registration from '../models/Registration';
 import Plan from '../models/Plan';
 import Student from '../models/Student';
 
+import NotiRegistrationUpdate from '../jobs/NotiRegistrationUpdate'
 import Queue from '../../lib/Queue';
 import Notification from '../schemas/Notification';
 import MailRegistrationStore from '../jobs/MailRegistrationStore';
@@ -159,6 +160,8 @@ class RegistrationController {
       formattedDateStart,
       formattedDateEnd,
     });
+
+    await NotiRegistrationUpdate.noti()
 
     return res.json(newRegister);
   }

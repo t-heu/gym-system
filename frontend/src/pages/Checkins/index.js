@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+//import { useDispatch } from 'react-redux';
+//import { Link } from 'react-router-dom';
 import { MdAdd, MdSearch, MdCheckCircle } from 'react-icons/md';
 
-import history from '../../services/history';
+//import history from '../../services/history';
 import api from '../../services/api';
 
 //import { studentDeleteRequest } from '../../store/modules/student/actions';
@@ -14,7 +14,7 @@ import { Header, SearchForm, Button } from './styles';
 import colors from '../../styles/colors';
 
 export default function Checkins() {
-  const [loading, setLoading] = useState(false);
+  //const [loading, setLoading] = useState(false);
   //const dispatch = useDispatch();
   const [query, setQuery] = useState([])
   const [registrations, setRegistrations] = useState([]);
@@ -38,13 +38,13 @@ export default function Checkins() {
   
   async function handleSubmit(id) {
     try {
-      setLoading(true);
+      //setLoading(true);
       await api.post(`/students/${id}/checkins`);
     
-      setLoading(false);
+      //setLoading(false);
       alert('Check!');
     } catch (err) {
-      setLoading(false);
+      //setLoading(false);
       alert('Ooops.. ');
     }
   }
@@ -52,7 +52,6 @@ export default function Checkins() {
 async function handleSearch(e) {
   e.preventDefault();
   setRegistrations([]);
-
   setQuery(e.target.q.value);
 }
 
@@ -60,7 +59,7 @@ return (
   <ContainerCustom maxWidth="1200">
       <Header>
         <h1>Treino do Aluno</h1>
-
+        
         <aside>
           <SearchForm>
             <form onSubmit={handleSearch}>
@@ -84,7 +83,7 @@ return (
           </thead>
           <tbody>
             {registrations.map(student => (
-              <tr key={String(student.id)}>
+              <tr style={{display: student.active ? '' : 'none'}} key={String(student.id)}>
                 <td>{student.student.name}</td>
                 <td>
                   <MdCheckCircle
@@ -93,16 +92,13 @@ return (
                   } />
                 </td>
                 <td>
-                  <div>
                    <Button
-                      type="button"
                       onClick={() => handleSubmit(student.id)}>
                     <>
                       <MdAdd color="#fff" size={17} />
-                      Checkin
+                      checkin
                     </>
                     </Button>
-                  </div>
                 </td>
               </tr>
             ))}

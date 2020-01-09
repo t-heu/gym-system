@@ -103,12 +103,20 @@ export default function Header() {
             </Link>
             {helpOrderCount > 0 && <OrderCount />}
           </li>
+          <li>
+            <Link
+              to="/alert"
+              style={{ color: active === 'alert' && colors.blackIsh }}
+              onClick={() => handleActive('alert')}
+            >
+              Avisos
+            </Link>
+          </li>
         </ul>
       </nav>
 
       <User>
         <UserName>{user.name}</UserName>
-        
         <button type="button" alt="Sair do Sistema" onClick={handleSignOut}>
           Sair do Sistema
         </button>

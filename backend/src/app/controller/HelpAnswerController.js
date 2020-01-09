@@ -3,6 +3,7 @@ import HelpOrder from '../models/HelpOrder';
 import Student from '../models/Student';
 import HelpOrderNotifications from '../schemas/HelpOrderNotifications';
 
+import NotiHelpOrderAnswer from '../jobs/NotiHelpOrderAnswer'
 import Queue from '../../lib/Queue';
 import MailHelpOrderAnswer from '../jobs/MailHelpOrderAnswer';
 
@@ -97,7 +98,7 @@ class HelpAnswerController {
     });
 
     await Queue.add(MailHelpOrderAnswer.key, {helpOrder})
-
+    await NotiHelpOrderAnswer.noti(answer)
     return res.json(helpOrder);
   }
 }

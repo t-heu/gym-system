@@ -14,12 +14,14 @@ import RegistrationNew from '../pages/RegistrationNew';
 import RegistrationUpdate from '../pages/RegistrationUpdate';
 import HelpOrders from '../pages/HelpOrders';
 import Checkins from '../pages/Checkins'
+import Alert from '../pages/Alert'
 import Trainings from '../pages/Trainings'
 
 export default function Routes() {
   return (
     <Switch>
       <Route path="/" exact component={SignIn} />
+      <Route path="/alert" component={Alert} isPrivate />
       <Route path="/checkins" component={Checkins} isPrivate />
       <Route path="/trainings" component={Trainings} isPrivate />
       <Route path="/students" component={Students} isPrivate />
