@@ -9,6 +9,7 @@ import CheckinController from './app/controller/CheckinController';
 import HelpOrderController from './app/controller/HelpOrderController';
 import HelpAnswerController from './app/controller/HelpAnswerController';
 import TrainingController from './app/controller/TrainingController'
+import NotificationController from './app/controller/NotificationController'
 
 import AuthMiddleware from './app/middlewares/auth';
 
@@ -17,6 +18,9 @@ const routes = new Router();
 // SESSION
 routes.post('/sessions', SessionController.store);
 routes.post('/studentsession', SessionController.show);
+
+// NOTIFICATION
+routes.post('/users/push', NotificationController.store)
 
 // STUDENT CHECKIN
 routes.get('/students/:id/checkins', CheckinController.index);

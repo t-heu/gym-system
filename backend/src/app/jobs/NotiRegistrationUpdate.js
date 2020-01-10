@@ -1,11 +1,12 @@
 import NotiPushSend from '../../lib/Noti'
 
 class NotiRegistrationUpdate {
-  noti() {
+  noti(token) {
     const setPush = {
       title: 'informação sobre sua matricula',
       body: 'sua matricula foi renovada ou atualizada',
-      data: { link: 'cool' }
+      data: { key: 7730 },
+      token
     }
     NotiPushSend(setPush)
   }

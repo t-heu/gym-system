@@ -9,7 +9,8 @@ class Student extends Model {
         age: Sequelize.INTEGER,
         weight: Sequelize.INTEGER,
         height: Sequelize.INTEGER,
-        code: Sequelize.INTEGER
+        code: Sequelize.INTEGER,
+        token_push: Sequelize.STRING
       },
       {
         sequelize,

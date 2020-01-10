@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Alert, KeyboardAvoidingView } from 'react-native';
+import { AsyncStorage, Alert, KeyboardAvoidingView } from 'react-native';
 
 import logoVertical from '../../assets/logo-vertical.png';
 import { Container, Logo, Input, Button } from './styles';
@@ -18,6 +18,7 @@ export default function SignIn() {
       return;
     }
     dispatch(signInRequest(code))
+    AsyncStorage.setItem('@key', code)
     setLoading(true)
   }
 

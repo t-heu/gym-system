@@ -1,11 +1,12 @@
 import NotiPushSend from '../../lib/Noti'
 
 class NotiHelpOrderAnswer {
-  noti(answer) {
+  noti(answer, token) {
     const setPush = {
       title: 'Sua pergunta foi respondida',
       body: answer,
-      data: { link: 'cool' }
+      data: { key: 7733 },
+      token,
     }
     NotiPushSend(setPush)
   }

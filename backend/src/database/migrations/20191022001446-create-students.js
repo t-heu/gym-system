@@ -32,6 +32,11 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      token_push: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: null,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

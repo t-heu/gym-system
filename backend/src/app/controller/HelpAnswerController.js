@@ -79,7 +79,7 @@ class HelpAnswerController {
       include: {
         model: Student,
         as: 'student',
-        attributes: ['id', 'name', 'email'],
+        attributes: ['id', 'name', 'email', 'token_push'],
       },
     });
 
@@ -90,9 +90,10 @@ class HelpAnswerController {
     helpOrder.answered_at = new Date();
 
     helpOrder.save();
-
+    
     await Queue.add(MailHelpOrderAnswer.key, {helpOrder})
-    await NotiHelpOrderAnswer.noti(answer)
+    await NotiHelpOrderAnswer.noti(answer, helpOrder.student.token_push)
+    
     return res.json(helpOrder);
   }
 }
