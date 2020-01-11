@@ -20,7 +20,8 @@ routes.post('/sessions', SessionController.store);
 routes.post('/studentsession', SessionController.show);
 
 // NOTIFICATION
-routes.post('/users/push', NotificationController.store)
+routes.put('/users/push', NotificationController.store)
+routes.post('/users/push', NotificationController.warnings)
 
 // STUDENT CHECKIN
 routes.get('/students/:id/checkins', CheckinController.index);
@@ -29,8 +30,6 @@ routes.post('/students/:id/checkins', CheckinController.store);
 // STUDENT HELP ORDERS
 routes.get('/students/:id/help-orders', HelpOrderController.index);
 routes.post('/students/:id/help-orders', HelpOrderController.store);
-
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<< KEEP OUT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 // AUTH middleware
 routes.use(AuthMiddleware);

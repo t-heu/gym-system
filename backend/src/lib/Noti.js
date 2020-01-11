@@ -10,7 +10,7 @@ let receiptIds = [];
 export default function NotiPushSend({title, body, data, token}) {
   
   if(token) {
-    somePushTokens.push(token)
+    somePushTokens.push(...token)
   }
   
   for (let pushToken of somePushTokens) {
