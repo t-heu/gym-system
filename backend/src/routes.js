@@ -20,7 +20,7 @@ routes.post('/sessions', SessionController.store);
 routes.post('/studentsession', SessionController.show);
 
 // NOTIFICATION
-routes.put('/users/push', NotificationController.store)
+routes.post('/users/push/v2', NotificationController.store)
 routes.post('/users/push', NotificationController.warnings)
 
 // STUDENT CHECKIN
@@ -34,7 +34,7 @@ routes.post('/students/:id/help-orders', HelpOrderController.store);
 // AUTH middleware
 routes.use(AuthMiddleware);
 
-// TRAINING
+// TRAINING put vs patch
 routes.get('/training', TrainingController.show)
 routes.post('/training-register', TrainingController.store)
 routes.put('/training-update', TrainingController.update)
@@ -44,7 +44,7 @@ routes.delete('/training-delete', TrainingController.delete)
 routes.post('/users', UserController.store);
 routes.get('/users', UserController.index);
 routes.get('/users/:id', UserController.show);
-routes.put('/users/', UserController.update);
+routes.patch('/users/', UserController.update);
 routes.delete('/users/:id', UserController.delete);
 
 // LIST ALL HELP ORDERS

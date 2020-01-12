@@ -49,7 +49,7 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
-
+    
     &:active {
       transform: translate(1px, 2px)
     }

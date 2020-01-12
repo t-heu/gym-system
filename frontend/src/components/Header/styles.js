@@ -68,6 +68,7 @@ export const User = styled.div`
   button {
     color: ${colors.warnDanger};
     border: none;
+    background: none;
   }
 `;
 

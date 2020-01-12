@@ -3,7 +3,7 @@ import { AsyncStorage } from 'react-native'
 import { Notifications } from 'expo';
 import * as Permissions from 'expo-permissions';
 
-const PUSH_ENDPOINT = 'http://192.168.15.2:3333/users/push';
+const PUSH_ENDPOINT = 'http://192.168.15.2:3333/users/push/v2';
 
 export async function register() {
   const { status: existingStatus } = await Permissions.getAsync(

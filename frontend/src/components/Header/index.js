@@ -99,7 +99,7 @@ export default function Header() {
               style={{ color: active === 'helpOrders' && colors.blackIsh }}
               onClick={() => handleActive('helpOrders')}
             >
-              Pedidos de Auxílio
+              Pedidos/Ajudas
             </Link>
             {helpOrderCount > 0 && <OrderCount />}
           </li>
@@ -118,7 +118,7 @@ export default function Header() {
       <User>
         <UserName>{user.name}</UserName>
         <button type="button" alt="Sair do Sistema" onClick={handleSignOut}>
-          Sair do Sistema
+          Sair
         </button>
       </User>
     </Container>

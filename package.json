@@ -1,9 +1,9 @@
 {
-  "name": "gympoint",
+  "name": "gym",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "",
-  "author": "Matheus Gomes <m@gmail.com>",
+  "author": "Matheus Gomes <math@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start-back": "cd backend && yarn dev",
