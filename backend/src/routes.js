@@ -14,6 +14,9 @@ import NotificationController from './app/controller/NotificationController'
 import AuthMiddleware from './app/middlewares/auth';
 
 const routes = new Router();
+routes.get('/training/:student_id', TrainingController.show)
+routes.post('/training/:student_id', TrainingController.store)
+
 
 // SESSION
 routes.post('/sessions', SessionController.store);
@@ -35,8 +38,8 @@ routes.post('/students/:id/help-orders', HelpOrderController.store);
 routes.use(AuthMiddleware);
 
 // TRAINING put vs patch
-routes.get('/training', TrainingController.show)
-routes.post('/training-register', TrainingController.store)
+//routes.get('/training', TrainingController.show)
+//routes.post('/training-register', TrainingController.store)
 routes.put('/training-update', TrainingController.update)
 routes.delete('/training-delete', TrainingController.delete)
 

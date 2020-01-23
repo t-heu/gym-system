@@ -19,6 +19,10 @@ class Student extends Model {
 
     return this;
   }
+  
+  static associate(models) {
+    this.belongsToMany(models.Training, { foreignKey: 'student_id', through: 'student_trainings', as: 'trainings' });
+  }
 }
 
 export default Student;
