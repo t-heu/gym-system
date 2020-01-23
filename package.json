@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "",
-  "author": "Matheus Gomes <math@gmail.com>",
+  "author": "Matheus Gomes <theu5g>",
   "license": "MIT",
   "scripts": {
-    "start-back": "cd backend && yarn dev",
+    "start-back": "cd backend && yarn build:js",
     "start-front": "cd frontend && yarn start",
     "start-mobile": "cd mobile && npm start",
     "compose": "docker-compose up --force-recreate",

@@ -51,9 +51,3 @@ A small gym system composed by a RESTful API made with Node Js, serving the gym 
 2. Run scripts:
   - Install dependencies:  `yarn install`
   - To start application:  `react-native run-android`
-  - * Due to some technical issues my XCode kept kiddin me with a totally blank black screen several times during the development process. My guess is that with a good machine with MacOs and Xcode you can easely make small adjustments and run `react-native run-ios` 
-3. Now you can login with one of the users **emails** below, or create one with front-web:
-  - `joao@student.com`
-  - `maria@student.com`
-  - `patricia@student.com`
-  - `jose@student.com`

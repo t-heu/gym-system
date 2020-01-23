@@ -36,10 +36,12 @@ Em primeiro lugar certifique-se de ter instalado em sua máquina e contas em ser
 
 `yarn install` ou `npm install`
 
-### Ambiente Dev (apenas este por enquanto)
+### Ambiente Dev
+
+`yarn build:js`
+isso irá rodar os dois comandos abaixo, se prefeir pode seguir manualmente como:
 
 `yarn dev` ou `npm run dev`
-
-Ao mesmo tempo você deve abrir outro terminal e digitar o comando para rodar a fila de jobs para envio de notificações:
-
 `yarn queue` ou `npm run queue`
+
+Ao mesmo tempo você deve abrir outro terminal e digitar o comando para rodar a fila de jobs para envio de notificações.
