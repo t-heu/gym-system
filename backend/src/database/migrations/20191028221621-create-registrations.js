@@ -7,10 +7,10 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      created_by_id: {
+      /*created_by_id: {
         type: Sequelize.STRING,
         allowNull: false,
-      },
+      },*/
       student_id: {
         type: Sequelize.INTEGER,
         references: { model: 'students', key: 'id' },

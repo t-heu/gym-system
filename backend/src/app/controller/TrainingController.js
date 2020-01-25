@@ -1,30 +1,26 @@
-import Student from '../models/Student';
 import Training from '../models/Training';
 
 class TrainingController {
-  async show(req, res) { // pesquisa um específico
-    const { student_id } = req.params;
+  async index(req, res) {
+    const trainings = await Training.findAll()
     
-    const user = await Student.findByPk(student_id, {
-      include: {
-        association: 'trainings',
-        attributes: ['name'],
-        through: {
-          attributes: []
-        }
-      }
-    })
-    
-    return res.json(user);
+    return res.json(trainings)
   }
   
+  /*async show(req, res) {
+    const { name } req.params
+    
+    const training = Training.findOne({ name })
+    
+    return res.json(training);
+  }*/
+  
   async store(req, res) {
-    const { student_id } = req.params;
     const { name, exe } = req.body;
     
-    const user = await Student.findByPk(student_id);
+    const training = await Training.findOne({name});
     
-    if (!user) {
+    if (!training) {
       return res.status(400).json({ error: 'User not found' });
     }
     
@@ -32,18 +28,34 @@ class TrainingController {
       name, 
       exercicios: exe.split(',').map(te => te.trim())
     });
-    //console.log(trai)
-    await user.addTraining(trai);
     
     return res.json(trai);
   }
   
   async update(req, res) {
+    const { exe, name } = req.body
+    const training = await Training.findByPk(req.params.id);
     
+    let objForUpdate = {};
+    
+    if (!training) return res.status(400).json({ error: 'Training not Found' });
+    
+    if (exe) objForUpdate.exercicios = exe.split(',').map(te => te.trim());
+    if (name) objForUpdate.name = name;
+    
+    const trai = await training.update(objForUpdate)
+    
+    return res.json(trai);
   }
   
   async delete(req, res) {
+    const training = await Training.findByPk(req.params.id);
     
+    if (!training) return res.status(400).json({ error: 'Plan not Found' });
+    
+    await Training.destroy({ where: { id: req.params.id } });
+    
+    return res.json({ message: 'Training successfuly deleted' });
   }
 }
 

@@ -6,7 +6,6 @@ import Student from '../models/Student';
 class StudentController {
   async index(req, res) {
     const filterName = req.query.q || '';
-    console.log(filterName)
     const students =
       filterName !== ''
         ? await Student.findAll({

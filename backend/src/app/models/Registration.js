@@ -5,7 +5,7 @@ class Registration extends Model {
   static init(sequelize) {
     super.init(
       {
-        created_by_id: Sequelize.STRING,
+        //created_by_id: Sequelize.STRING,
         start_date: Sequelize.DATE,
         end_date: Sequelize.DATE,
         price: Sequelize.INTEGER,
