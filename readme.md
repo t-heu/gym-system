@@ -12,10 +12,6 @@ A small gym system composed by a RESTful API made with Node Js, serving the gym 
 - **Android and/Or IOS development environment well setted-up**
 - **MailTrap** account
 - **Sentry** account
-- Optionals:
-  - **React Native CLI**
-  - **Postbird**
-  - **MongoDb Compass**
 
 ### Running Backend API
 

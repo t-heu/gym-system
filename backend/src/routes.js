@@ -16,11 +16,6 @@ import AuthMiddleware from './app/middlewares/auth';
 
 const routes = new Router();
 
-// 
-routes.get('/trai/:student_id', LinkController.show)
-routes.post('/trai/:student_id', LinkController.store)
-routes.delete('/trai/:student_id', LinkController.delete)
-
 // SESSION
 routes.post('/sessions', SessionController.store);
 routes.post('/studentsession', SessionController.show);
@@ -40,8 +35,14 @@ routes.post('/students/:id/help-orders', HelpOrderController.store);
 // AUTH middleware
 routes.use(AuthMiddleware);
 
+// LINK
+routes.get('/trai/:student_id', LinkController.show)
+routes.post('/trai/:student_id', LinkController.store)
+routes.delete('/trai/:student_id', LinkController.delete)
+
 // TRAINING put vs patch
 routes.get('/trainings', TrainingController.index)
+routes.get('/training/:id', TrainingController.show)
 routes.post('/training', TrainingController.store)
 routes.put('/training/:id', TrainingController.update)
 routes.delete('/training/:student_id', TrainingController.delete)

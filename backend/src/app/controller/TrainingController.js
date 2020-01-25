@@ -1,19 +1,33 @@
 import Training from '../models/Training';
+import { Op } from 'sequelize';
 
 class TrainingController {
   async index(req, res) {
-    const trainings = await Training.findAll()
+    const filterName = req.query.q || '';
+    
+    const trainings =
+      filterName !== '' ?
+      await Training.findAll({
+        where: { name: {
+          [Op.substring]: filterName 
+        } },
+      }) :
+      await Training.findAll();
+    
+    if (trainings.length === 0) {
+      return res.status(400).json({ error: 'Student Not Found' });
+    }
     
     return res.json(trainings)
   }
   
-  /*async show(req, res) {
-    const { name } req.params
+  async show(req, res) {
+    const training = await Training.findByPk(req.params.id);
     
-    const training = Training.findOne({ name })
+    if (!training) return res.status(400).json({ error: 'ID not found' });
     
-    return res.json(training);
-  }*/
+    return res.json(student);
+  }
   
   async store(req, res) {
     const { name, exe } = req.body;
@@ -49,11 +63,11 @@ class TrainingController {
   }
   
   async delete(req, res) {
-    const training = await Training.findByPk(req.params.id);
+    const training = await Training.findByPk(req.params.student_id);
     
     if (!training) return res.status(400).json({ error: 'Plan not Found' });
     
-    await Training.destroy({ where: { id: req.params.id } });
+    await Training.destroy({ where: { id: req.params.student_id } });
     
     return res.json({ message: 'Training successfuly deleted' });
   }

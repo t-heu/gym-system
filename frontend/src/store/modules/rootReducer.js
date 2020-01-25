@@ -5,11 +5,13 @@ import user from './user/reducer';
 import student from './student/reducer';
 import helpOrders from './helpOrders/reducer';
 import plans from './plans/reducer';
+import trainings from './trainings/reducer';
 
 export default combineReducers({
   auth,
   user,
   student,
   helpOrders,
-  plans
+  plans,
+  trainings
 });

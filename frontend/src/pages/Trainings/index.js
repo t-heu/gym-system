@@ -6,7 +6,7 @@ import { MdAdd, MdSearch } from 'react-icons/md';
 import history from '../../services/history';
 import api from '../../services/api';
 
-import { studentDeleteRequest } from '../../store/modules/student/actions';
+import { trainingDeleteRequest } from '../../store/modules/trainings/actions';
 
 import ContainerCustom from '../../components/ContainerCustom';
 import ButtomCustom from '../../components/ButtonCustom';
@@ -17,15 +17,19 @@ import { Header, SearchForm } from './styles';
 export default function Trainings() {
   const dispatch = useDispatch();
 
-  const [students, setStudents] = useState([]);
+  const [trainings, setTrainings] = useState([]);
 
   async function loadStudents(query) {
     try {
-      const response = query ?
-        await api.get(`/students?q=${query}`) :
-        await api.get(`/students`);
-
-      setStudents(response.data);
+      const { data } = query ?
+        await api.get(`/trainings?q=${query}`) :
+        await api.get(`/trainings`);
+      
+      //response.data[0].exercicios.map(te => alert(te))
+      const { exercicios } = data
+      setTrainings(data)
+      
+      //setTrainings(response.data);
     } catch (err) {
       alert(err)
     }
@@ -37,20 +41,20 @@ export default function Trainings() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setStudents([]);
+    setTrainings([]);
     loadStudents(e.target.q.value);
   }
 
   function handleNavigate() {
-    history.push('/trainings-register');
+    history.push('/training-register');
   }
 
   function handleDelete(id) {
-    dispatch(studentDeleteRequest(id));
+    dispatch(trainingDeleteRequest(id));
 
-    const updateStudents = students.filter(student => student.id !== id);
+    const updateTrainings = trainings.filter(training => training.id !== id);
 
-    setStudents(updateStudents);
+    setTrainings(updateTrainings);
   }
 
   return (
@@ -82,30 +86,29 @@ export default function Trainings() {
           <thead>
             <tr>
               <td>Nome</td>
-              <td>Email</td>
-              <td>Code</td>
-              <td className="tdCenter">Idade</td>
-              <td className="shrink" />
+              <td>Exercícios</td>
             </tr>
           </thead>
           <tbody>
-            {students.map(student => (
-              <tr key={String(student.id)}>
-                <td>{student.name}</td>
-                <td>{student.email}</td>
-                <td>{student.code}</td>
-                <td className="tdCenter">{student.age}</td>
+            {trainings.map(training => (
+              <tr key={String(training.id)}>
+                <td>{training.name}</td>
+                <td>
+                  <ul>
+                    {training.exercicios.join(', ').split(',').map(treino => (<li>{treino}</li>))}
+                  </ul>
+                </td>
                 <td>
                   <div>
                     <Link
-                      to={`/trainings-update/${student.id}`}
+                      to={`/training-update/${training.id}`}
                       className="inline__edit"
                     >
                       editar
                     </Link>
                     <Link
-                      to="/students"
-                      onClick={() => handleDelete(student.id)}
+                      to="/trainings"
+                      onClick={() => handleDelete(training.id)}
                       className="inline__delete"
                     >
                       apagar
