@@ -18,11 +18,15 @@ import Alert from '../pages/Alert'
 import Trainings from '../pages/Trainings'
 import TrainingNew from '../pages/TrainingNew'
 import TrainingUpdate from '../pages/TrainingUpdate'
+import Linke from '../pages/Link'
+import LinkProfile from '../pages/LinkProfile'
 
 export default function Routes() {
   return (
     <Switch>
       <Route path="/" exact component={SignIn} />
+      <Route path="/link" component={Linke} isPrivate />
+      <Route path="/linke/:id" component={LinkProfile} isPrivate />
       
       <Route path="/alert" component={Alert} isPrivate />
       <Route path="/checkins" component={Checkins} isPrivate />

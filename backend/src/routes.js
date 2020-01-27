@@ -36,9 +36,10 @@ routes.post('/students/:id/help-orders', HelpOrderController.store);
 routes.use(AuthMiddleware);
 
 // LINK
+routes.get('/trai', LinkController.index)
 routes.get('/trai/:student_id', LinkController.show)
 routes.post('/trai/:student_id', LinkController.store)
-routes.delete('/trai/:student_id', LinkController.delete)
+routes.delete('/trai/:student_id/:name', LinkController.delete)
 
 // TRAINING put vs patch
 routes.get('/trainings', TrainingController.index)

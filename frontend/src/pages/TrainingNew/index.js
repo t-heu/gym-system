@@ -42,7 +42,8 @@ export default function TrainingNew() {
               <MdKeyboardArrowLeft size={22} color="#fff" />
               Voltar
             </ButtonCustom>
-            <button type="submit" form="studentForm" className="button__submit">
+            <button type="submit" 
+            form="studentForm" className="button__submit">
               <MdCheck size={22} color="#fff" />
               {loading ? 'Loading...' : 'Salvar'}
             </button>
@@ -51,7 +52,7 @@ export default function TrainingNew() {
 
         <ContentBox>
           <Fragment>
-            <Form schema={schema} onSubmit={handleSubmit} id="studentForm">
+            <Form schema={schema}  onSubmit={handleSubmit} id="studentForm">
               <label htmlFor="name">Nome</label>
               <Input
                 name="name"

@@ -13,19 +13,20 @@ import ButtomCustom from '../../components/ButtonCustom';
 import ContentBox from '../../components/ContentBox';
 
 import { Header, SearchForm } from './styles';
-
-export default function Trainings() {
+//Linkp
+export default function Linke() {
   const dispatch = useDispatch();
 
-  const [trainings, setTrainings] = useState([]);
+  const [link, setLink] = useState([]);
 
   async function loadStudents(query) {
     try {
       const { data } = query ?
-        await api.get(`/trainings?q=${query}`) :
-        await api.get(`/trainings`);
-        
-      setTrainings(data)
+        await api.get(`/trai?q=${query}`) :
+        await api.get(`/trai`);
+      
+      //alert(typeof data[0].trainings)
+      setLink(data)
     } catch (err) {
       alert(err)
     }
@@ -37,20 +38,8 @@ export default function Trainings() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setTrainings([]);
+    setLink([]);
     loadStudents(e.target.q.value);
-  }
-
-  function handleNavigate() {
-    history.push('/training-register');
-  }
-
-  function handleDelete(id) {
-    dispatch(trainingDeleteRequest(id));
-
-    const updateTrainings = trainings.filter(training => training.id !== id);
-
-    setTrainings(updateTrainings);
   }
 
   return (
@@ -59,13 +48,13 @@ export default function Trainings() {
         <h1>Gerenciando Treinos</h1>
 
         <aside>
-          <ButtomCustom clickFunc={() => handleNavigate()}>
-            <>
-              <MdAdd color="#fff" size={20} />
-              Cadastrar
-            </>
-          </ButtomCustom>
-
+          <div>
+            <form onSubmit={handleSubmit}>
+              <input name="aluno" type="text" placeholder="Buscar aluno" />
+              <input name="treino" type="text" placeholder="Buscar treino" />
+            </form>
+          </div>
+          
           <SearchForm>
             <form onSubmit={handleSubmit}>
               <input name="q" type="text" placeholder="Buscar aluno" />
@@ -82,34 +71,28 @@ export default function Trainings() {
           <thead>
             <tr>
               <td>Nome</td>
-              <td>Exercícios</td>
+              <td>Nome dos Treinos</td>
             </tr>
           </thead>
           <tbody>
-            {trainings.map(training => (
-              <tr key={String(training.id)}>
-                <td>{training.name}</td>
+            {link.map(re => (
+              <tr key={String(re.id)}>
+                <td>{re.name}</td>
                 <td>
                   <ul>
-                    {training.exercicios.join(', ').split(',').map(treino => (<li>{treino}</li>))}
+                    {re.trainings.length == 0 ? (
+                      <li>vazio</li>
+                    ) : (
+                      <>
+                        {re.trainings.map(a => (
+                          <li>{a.name}</li>
+                        ))}
+                      </>
+                    )}
                   </ul>
                 </td>
                 <td>
-                  <div>
-                    <Link
-                      to={`/training-update/${training.id}`}
-                      className="inline__edit"
-                    >
-                      editar
-                    </Link>
-                    <Link
-                      to="/trainings"
-                      onClick={() => handleDelete(training.id)}
-                      className="inline__delete"
-                    >
-                      apagar
-                    </Link>
-                  </div>
+                <Link to={`/linke/${re.id}`}>ver</Link>
                 </td>
               </tr>
             ))}
