@@ -6,7 +6,7 @@ import api from '../../../services/api';
 
 import { signInSuccess, signInFailure } from './actions';
 
-export function* signIn({ payload }) {
+function* signIn({ payload }) {
   try {
     const { email, password } = payload;
 
@@ -28,7 +28,7 @@ export function* signIn({ payload }) {
   }
 }
 
-export function setToken({ payload }) {
+function setToken({ payload }) {
   if (!payload) return;
 
   const { token } = payload.auth;
@@ -38,7 +38,7 @@ export function setToken({ payload }) {
   }
 }
 
-export function signOut() {
+function signOut() {
   history.push('/');
 }
 

@@ -31,7 +31,7 @@ export function* getTrainingRequest({ payload }) {
   try {
     const { id } = payload;
 
-    const response = yield call(api.get, `students/${id}`);
+    const response = yield call(api.get, `training/${id}`);
 
     yield put(getTrainingSuccess(response.data));
   } catch (err) {
@@ -43,7 +43,7 @@ export function* getTrainingRequest({ payload }) {
 export function* updateTraining({ payload }) {
   try {
     const { name, exe, id } = payload.training;
-    alert(id)
+    
     const response = yield call(api.put, `training/${id}`, {
       name,
       exe

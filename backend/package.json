@@ -4,10 +4,14 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build:js": "npm-run-all -p queue dev",
-    "dev": "nodemon src/server.js",
-    "dev:debug": "nodemon --inspect src/server.js",
-    "queue": "nodemon src/queue.js"
+    "start": "npm-run-all -p queue dev",
+    "deploy": "node src/server.js",
+    "queue": "nodemon src/queue.js",
+    "dev": "nodemon src/server.js --ignore __tests__",
+    "test": "NODE_ENV=test jest",
+    "pretest": "NODE_ENV=test sequelize db:migrate",
+    "postest": "NODE_ENV=test sequelize db:migrate:undo:all",
+    "dev:debug": "nodemon --inspect src/server.js"
   },
   "dependencies": {
     "@sentry/node": "5.7.1",

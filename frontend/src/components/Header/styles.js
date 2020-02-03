@@ -7,7 +7,6 @@ export const Container = styled.div`
   height: 64px;
   background: #fff;
   border-bottom: 1px solid ${colors.grayLight};
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -41,8 +40,24 @@ export const Container = styled.div`
       }
     }
     @media(max-width: 480px) {
-      ul li {
+      img {
+        margin-right: 0;
+      }
+      ul {
         display: none;
+        background: #fff;
+        height: 100%;
+        width: 50%;
+        z-index: 100;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        box-shadow: 180px 1px 2px 1px rgba(0,0,0,0.4);
+      }
+      ul li {
+        display: block;
+        padding: 1em;
       }
     }
   }

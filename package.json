@@ -10,6 +10,7 @@
     "start-front": "cd frontend && yarn start",
     "start-mobile": "cd mobile && npm start",
     "compose": "docker-compose up --force-recreate",
-    "populate": "cd backend && yarn sequelize db:migrate && yarn sequelize db:seed:all"
+    "populate": "cd backend && yarn sequelize db:migrate && yarn sequelize db:seed:all",
+    "rollback": "cd backend && yarn sequelize db:migrate:undo:all"
   }
 }
