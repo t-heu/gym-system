@@ -69,9 +69,9 @@ class HelpAnswerController {
       return res.status(400).json({ error: 'Validation Fails' });
 
     const { id } = req.params;
-
+  
     const { answer } = req.body;
-
+    
     const helpOrder = await HelpOrder.findOne({
       where: {
         id,
@@ -82,7 +82,7 @@ class HelpAnswerController {
         attributes: ['id', 'name', 'email', 'token_push'],
       },
     });
-
+    
     if (!helpOrder)
       return res.status(400).json({ error: 'Help Order does not exists' });
 
