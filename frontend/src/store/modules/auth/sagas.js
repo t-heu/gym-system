@@ -28,6 +28,11 @@ function* signIn({ payload }) {
   }
 }
 
+/*
+  essa ação REHYDRATE só deve ser despachada quando a página é recarregada e o redux - persister recarrega os dados que foram persistidos.
+  
+  a suposição é que o token foi mantido anteriormente dentro do repositório Redux, em state.auth.token, esse estado foi mantido e, portanto, o token está disponível quando o estado está sendo recarregado.
+*/
 function setToken({ payload }) {
   if (!payload) return;
 
