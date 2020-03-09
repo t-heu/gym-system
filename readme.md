@@ -7,9 +7,9 @@ A small gym system composed by a RESTful API made with Node Js, serving the gym 
 
 - **NodeJs**
 - **Npm** or **Yarn** (commands listed below with yarn)
-- **Docker**
+- **Docker or database remote**
 - **Sequelize CLI**
-- **Android and/Or IOS development environment well setted-up**
+- **Expo or Android and/Or IOS development environment well setted-up**
 - **MailTrap** account
 - **Sentry** account
 
@@ -17,7 +17,7 @@ A small gym system composed by a RESTful API made with Node Js, serving the gym 
 
 1. Clone or Download this repo
 2. Open terminal on this repo folder
-3. Make shure you have **.env** file configured with database connections of your choice based on **docker-compose.yml** file.
+3. Make shure you have **.env** file configured with database connections of your choice based on **docker-compose.yml** file or use a remote option like I did.
 4. Run Scripts (one after another finishes):
   - Install dependencies:  `yarn install-backend`
   - Load containers: `yarn compose`
@@ -31,7 +31,7 @@ A small gym system composed by a RESTful API made with Node Js, serving the gym 
 
 ## Running Front-End
 
-1. In terminal go to **/front-web** dir
+1. In terminal go to **/frontend** dir
 2. Run scripts:
   - Install dependencies:  `yarn install`
   - To start application:  `yarn start`
@@ -43,7 +43,7 @@ A small gym system composed by a RESTful API made with Node Js, serving the gym 
 
 ## Running Front-End Mobile
   
-1. In terminal go to **/front-mobile** dir
+1. In terminal go to **/mobile** dir
 2. Run scripts:
   - Install dependencies:  `yarn install`
-  - To start application:  `react-native run-android`
+  - To start application:  `expo start or yarn start`
