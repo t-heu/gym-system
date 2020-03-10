@@ -32,13 +32,13 @@ routes.post('/students/:id/checkins', CheckinController.store);
 routes.get('/students/:id/help-orders', HelpOrderController.index);
 routes.post('/students/:id/help-orders', HelpOrderController.store);
 
-routes.get('/trai/:student_id', LinkController.show)
+
 // AUTH middleware
 routes.use(AuthMiddleware);
 
 // LINK
 routes.get('/trai', LinkController.index)
-//routes.get('/trai/:student_id', LinkController.show)
+routes.get('/trai/:student_id', LinkController.show)
 routes.post('/trai/:student_id', LinkController.store)
 routes.delete('/trai/:student_id/:name', LinkController.delete)
 
