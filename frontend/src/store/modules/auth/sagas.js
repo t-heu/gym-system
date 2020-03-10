@@ -34,7 +34,7 @@ function* signIn({ payload }) {
   
   a suposição é que o token foi mantido anteriormente dentro do repositório Redux, em state.auth.token, esse estado foi mantido e, portanto, o token está disponível quando o estado está sendo recarregado.
 */
-function setToken({ payload }) {
+function* setToken({ payload }) {
   if (!payload) return;
 
   const { token } = payload.auth;

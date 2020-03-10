@@ -16,6 +16,7 @@ import colors from '../../styles/colors';
 export default function Checkins() {
   //const [loading, setLoading] = useState(false);
   //const dispatch = useDispatch();
+  const [trai, setTrai] = useState([])
   const [query, setQuery] = useState([])
   const [registrations, setRegistrations] = useState([]);
   
@@ -39,10 +40,12 @@ export default function Checkins() {
   async function handleSubmit(id) {
     try {
       //setLoading(true);
-      await api.post(`/students/${id}/checkins`);
-    
-      //setLoading(false);
-      alert('Check!');
+      const res = await api.post(`/students/${id}/checkins`);
+      if(res.length >= 1) {
+        const traini = await api.get(`/trai/${id}`)
+        
+        setTrai(traini.data[0].trainings)
+      }
     } catch (err) {
       //setLoading(false);
       alert('Ooops.. ');
@@ -77,26 +80,23 @@ return (
           <thead>
             <tr>
               <td>Nome</td>
-              <td>Status</td>
               <td className="shrink" />
             </tr>
           </thead>
           <tbody>
             {registrations.map(student => (
               <tr style={{display: student.active ? '' : 'none'}} key={String(student.id)}>
-                <td>{student.student.name}</td>
                 <td>
-                  <MdCheckCircle
-                  color={
-                    student.active ? colors.warnSuccess : colors.grayLight
-                  } />
+                  {student.student.name}
+                  <MdCheckCircle color={student.active ? colors.warnSuccess : colors.grayLight} />
                 </td>
+                
                 <td>
                    <Button
                       onClick={() => handleSubmit(student.id)}>
                     <>
                       <MdAdd color="#fff" size={17} />
-                      checkin
+                      
                     </>
                     </Button>
                 </td>
@@ -104,6 +104,19 @@ return (
             ))}
           </tbody>
         </table>
+      </ContentBox>
+      
+      <ContentBox>
+        <div style={{padding: '20px'}}>
+        <h2>info:</h2>
+        {trai.length != 0 && (
+          <>
+            {trai.map(d => (
+              <p>{d.name}</p>
+            ))}
+          </>
+        )}
+        </div>
       </ContentBox>
     </ContainerCustom>
   );
