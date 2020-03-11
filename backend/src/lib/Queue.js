@@ -26,7 +26,21 @@ class Queue {
       };
     });
   }
-
+  /**
+  * queue é name
+  * job é helpOrder: HelpOrder
+  * recebe chave(key) e valor(value) e salva
+  * 
+  * bq:name:id: Inteiro, incrementado para determinar o próximo ID do trabalho.
+  *   
+  * bq:name:jobs: Hash do ID da tarefa para uma sequência JSON contendo seus dados e opções.
+  *   
+  * bq:name:waiting: Lista de IDs de trabalhos aguardando para serem processados.
+  * 
+  * bq:name:active: Lista de trabalhos de IDs atualmente em processamento.
+  * 
+  * bq:name:succeeded: Conjunto de IDs de trabalhos que foram bem sucedidos.
+  */
   add(queue, job) {
     return this.queues[queue].bee.createJob(job).save()
   }
